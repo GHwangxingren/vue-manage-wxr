@@ -1,5 +1,7 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import Layout from '@/layout';
+import store from '@/store';
 
 Vue.use(VueRouter)
 
@@ -13,13 +15,31 @@ Vue.use(VueRouter)
  * noCache: true  当设置为true时不缓存该路由页面
  * }
  */
-const routes = [
+
+// 通用路由
+export const routes = [
   {
     path: '/login',
     name: 'Login',
     component: () => import('@/views/Login'),
     meta: { title: '登录页' },
     hidden: true
+  },
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/home',
+    children: [
+      {
+        path: 'home',
+        name: 'HomePage',
+        component: () => import('@/views/HomePage'),
+        meta: {
+          title: '系统首页',
+          icon: 'el-icon-s-data'
+        }
+      }
+    ]
   },
   {
     path: '*',
@@ -41,10 +61,60 @@ const routes = [
   // },
 ]
 
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+// 动态添加路由
+export const asyncRoutes = [
+
+]
+
+const createRouter = () => {
+  return new VueRouter({
+    mode: 'history',
+    base: process.env.BASE_URL,
+    routes,
+    scrollBehavior() {
+      return { x: 0, y: 0 }
+    }
+  })
+}
+
+const router = createRouter();
+
+// 路由守卫
+router.beforeEach(async (to, form, next) => {
+  document.title = to.meta.title;
+  if (to.path === '/login') {
+    next();
+  } else {
+    if (store.getters.token) {
+      const hasRoles = store.getters.roles.length > 0;
+      if (hasRoles) {
+        next();
+      } else {
+        try {
+          let roles = store.getters.roles;
+          const addRoutes = await store.dispatch(
+            'permission/getAsyncRoutes',
+            roles
+          );
+          router.addRoutes(addRoutes);
+
+          // hack method to ensure that addRoutes is complete
+          // set the replace: true, so the navigation will not leave a history record
+          next({ ...to, replace: true })
+        } catch (error) {
+          this.$message.error(error)
+        }
+      }
+    } else {
+      next({
+        path: '/login',
+        query: {
+          redirect: to.fullPath
+        }
+      })
+    }
+  }
 })
+
 
 export default router

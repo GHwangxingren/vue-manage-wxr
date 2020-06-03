@@ -1,5 +1,6 @@
 <template>
   <div class="wrapper login-wrapper">
+    <!-- 动画背景 -->
     <vue-particles
       color="#dedede"
       :particleOpacity="0.7"
@@ -18,6 +19,26 @@
       clickMode="push"
     >
     </vue-particles>
+    <!-- 滑动验证码 -->
+    <div class="slideShadow" v-show="showVerify">
+      <transition>
+        <div class="slideSty animated bounce">
+          <slide-verify
+            @success="onSuccess"
+            @fail="onFail"
+            sliderText="向右滑动"
+            :w="350"
+            :h="175"
+            ref="slideVerify"
+          ></slide-verify>
+          <div class="iconBtn">
+            <i class="el-icon-circle-close" @click="showVerify = false"></i
+            ><i class="el-icon-refresh" @click="refresh"></i>
+          </div>
+        </div>
+      </transition>
+    </div>
+    <!-- 登录 -->
     <div class="login">
       <p class="login-title">后台管理系统</p>
       <el-form :model="loginForm" :rules="rules" ref="loginForm" class="login-form">
@@ -40,14 +61,19 @@
 </template>
 
 <script>
-import formatDate from '../utils/formatDate'
+import SlideVerify from '@/components/SlideVerify';
+import { mapActions } from 'vuex'; 
 export default {
   name: 'login',
+  components: {
+    SlideVerify
+  },
   data() {
     return {
+      showVerify: false,
       loginForm: {
         username: 'admin',
-        password: 'admin'
+        password: '123456'
       },
       rules: {
         username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
@@ -55,15 +81,23 @@ export default {
       }
     }
   },
-  created() {},
   methods: {
-    submitLogin () {
+    ...mapActions({login: 'user/_login'}),
+    onSuccess() {
+      console.log(33333)
+      this.showSlide = false;
+      this.login(this.loginForm);
+    },
+    onFail() {
+      this.$message.error('验证失败');
+    },
+    refresh() {
+      this.$refs.slideVerify.reset()
+    },
+    submitLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.$message.success('登录成功')
-          localStorage.setItem('MS_USERNAME', this.loginForm.username)
-          localStorage.setItem('MS_LOGINTIME', formatDate('', 'YYYY-MM-DD'))
-          this.$router.push('/')
+          this.showVerify = true;
         } else {
           return false
         }
@@ -85,6 +119,46 @@ export default {
     left: 0;
     right: 0;
     z-index: 1;
+  }
+  .slideShadow {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    .slideSty {
+      position: absolute;
+      width: 380px;
+      height: 311px;
+      background: #e8e8e8;
+      border: 1px solid #dcdcdc;
+      left: 50%;
+      top: 50%;
+      margin-left: -188px;
+      margin-top: -176px;
+      z-index: 99;
+      border-radius: 5px;
+      .slide-verify {
+        margin: 13px auto 0 auto;
+        width: 350px !important;
+      }
+      .iconBtn {
+        padding: 9px 0 0 19px;
+        color: #5f5f5f;
+        border-top: 1px solid #d8d8d8;
+        margin-top: 17px;
+        i {
+          font-size: 22px;
+          cursor: pointer;
+        }
+        i:last-child {
+          margin-left: 7px;
+        }
+      }
+      .slide-verify-slider {
+        width: 100% !important;
+      }
+    }
   }
   .login {
     position: absolute;
@@ -114,3 +188,4 @@ export default {
   }
 }
 </style>
+

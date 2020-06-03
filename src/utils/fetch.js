@@ -1,9 +1,10 @@
 import axios from "axios";
+import { Loading } from 'element-ui';
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: process.env.NODE_ENV === "production" ? "" : "/api"; // api的base_url
-  timeout: 5000 * 8; // 请求超时时间
+  baseURL: process.env.VUE_APP_BASE_API, // api的base_url
+  timeout: 5000 * 8 // 请求超时时间
 })
 
 let loading = null
@@ -11,7 +12,12 @@ let loading = null
 // request拦截器
 service.interceptors.request.use(
   config => {
-    loading = Loading.service({ text: '拼命加载中' })
+    loading = Loading.service({
+      lock: true,
+      text: '拼命加载中',
+      spinner: 'el-icon-loading',
+      background: 'rgba(0, 0, 0, 0.7)'
+    })
     // const token = ''
     // if (token) {
     //   config.headers.Authorization = token // 请求头部添加token
@@ -23,7 +29,6 @@ service.interceptors.request.use(
     Promise.reject(error);
   }
 )
-
 // response拦截器
 service.interceptors.response.use(
   response => {
