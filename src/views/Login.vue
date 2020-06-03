@@ -84,7 +84,6 @@ export default {
   methods: {
     ...mapActions({login: 'user/_login'}),
     onSuccess() {
-      console.log(33333)
       this.showSlide = false;
       this.login(this.loginForm);
     },

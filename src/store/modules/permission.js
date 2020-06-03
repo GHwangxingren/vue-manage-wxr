@@ -1,4 +1,4 @@
-import { routes, asyncRoutes } from '@/router';
+import { asyncRoutes, routes } from '@/router'
 
 const state = {
   routes: [],
@@ -28,7 +28,7 @@ let matchRoles = (routes, roles) => {
 
 const actions = {
   getAsyncRoutes({commit, rootGetters}, roles) {
-    return new Promise((resolve, reject) => {
+    return new Promise(resolve => {
       let routes = rootGetters.userName === 'admin' ? asyncRoutes : matchRoles(asyncRoutes, roles);
       commit('SET_ROUTES', routes)
       resolve(routes)

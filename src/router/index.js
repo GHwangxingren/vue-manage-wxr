@@ -2,7 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Layout from '@/layout';
 import store from '@/store';
-
 Vue.use(VueRouter)
 
 
@@ -91,7 +90,7 @@ router.beforeEach(async (to, form, next) => {
         next();
       } else {
         try {
-          let roles = store.getters.roles;
+          const { roles } = await store.dispatch('user/_getRoles')
           const addRoutes = await store.dispatch(
             'permission/getAsyncRoutes',
             roles

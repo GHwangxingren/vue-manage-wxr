@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Loading } from 'element-ui';
+import store from '@/store';
 
 // 创建axios实例
 const service = axios.create({
@@ -18,10 +19,10 @@ service.interceptors.request.use(
       spinner: 'el-icon-loading',
       background: 'rgba(0, 0, 0, 0.7)'
     })
-    // const token = ''
-    // if (token) {
-    //   config.headers.Authorization = token // 请求头部添加token
-    // }
+    const token = store.getters.token
+    if (token) {
+      config.headers.Authorization = token // 请求头部添加token
+    }
     return config
   },
   error => { // Do something with request error

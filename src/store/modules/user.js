@@ -1,5 +1,5 @@
-import { loginApi} from '@/api/index';
-// import { Message } from 'element-ui'
+import { loginApi, getRolesApi } from '@/api/index';
+import { Message } from 'element-ui';
 import router from '@/router';
 import formatDate from '@/utils/formatDate';
 
@@ -37,7 +37,6 @@ const mutations = {
   }
 }
 const actions = {
-  // user login
   _login({ commit }, payload) {
     return new Promise((resolve, reject) => {
       loginApi(payload)
@@ -45,18 +44,33 @@ const actions = {
           if (res.code === 0) {
             const {success, msg, userInfo} = res.data;
             if (success) {
-              this.$message.success(msg)
+              Message.success(msg)
               commit('SET_TOKEN', userInfo.token);
-              commit('SET_ROLES', userInfo.roles);
               commit('SET_NAME', userInfo.name);
               commit('SET_LOGINTIME', formatDate('', 'YYYY-MM-DD'));
-              console.log(2222222)
-              this.$router.push('/');
+              router.push('/');
             } else {
-              this.$message.error(msg)
+              Message.error(msg)
             }
             resolve(res)
           }
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
+  },
+  _getRoles({ commit }) {
+    return new Promise((resolve, reject) => {
+      getRolesApi()
+        .then(res => {
+          if (res.code === 0) {
+            const { roles } = res.data;
+            commit('SET_ROLES', roles);
+          } else {
+            Message.error(res.msg)
+          }
+          resolve(res.data)
         })
         .catch(error => {
           reject(error)

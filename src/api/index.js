@@ -37,3 +37,13 @@ export function loginApi(data) {
   })
 }
 
+/**
+ * 获取权限信息
+ */
+export function getRolesApi() {
+  return request({
+      url: '/getRoutes',
+      method: 'get'
+  })
+}
+

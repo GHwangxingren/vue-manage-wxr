@@ -2,6 +2,7 @@
   <div class="layout">
     <!-- header -->
     <!-- sidebar -->
+    <side-bar />
     <div class="content-box" :class="{'content-collapse': collapse}">
       <!-- <v-tags></v-tags> -->
       <div class="content">
@@ -16,6 +17,21 @@
     </div>
   </div>
 </template>
+
+<script>
+import SideBar from './componnets/SideBar';
+export default {
+  name: 'Layout',
+  components: {
+    SideBar
+  },
+  data() {
+    return {
+      collapse: false
+    }
+  }
+}
+</script>
 
 <style lang="less" scoped>
 .content-box {
