@@ -1,6 +1,7 @@
 <template>
   <div class="layout">
     <!-- header -->
+    <v-header />
     <!-- sidebar -->
     <side-bar />
     <div class="content-box" :class="{'content-collapse': collapse}">
@@ -20,10 +21,12 @@
 
 <script>
 import SideBar from './componnets/SideBar';
+import vHeader from './componnets/Header';
 export default {
   name: 'Layout',
   components: {
-    SideBar
+    SideBar,
+    vHeader
   },
   data() {
     return {

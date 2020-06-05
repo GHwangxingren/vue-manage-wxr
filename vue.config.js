@@ -14,6 +14,12 @@ module.exports = {
       .set('@', resolve('src'))
     config.optimization.runtimeChunk('single')
   },
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: [path.resolve(__dirname, './src/assets/css/common.less') ]
+    }
+  },
   devServer: {
     historyApiFallback: true,
     overlay: {

@@ -17,10 +17,15 @@ Vue.use(VueRouter)
 
 // 通用路由
 export const routes = [
+  // {
+  //   path: '/',
+  //   redirect: '/home',
+  //   hidden: true
+  // },
   {
     path: '/login',
     name: 'Login',
-    component: () => import('@/views/Login'),
+    component: () => import('@/views/Login/index'),
     meta: { title: '登录页' },
     hidden: true
   },
@@ -32,7 +37,7 @@ export const routes = [
       {
         path: 'home',
         name: 'HomePage',
-        component: () => import('@/views/HomePage'),
+        component: () => import('@/views/HomePage/index'),
         meta: {
           title: '系统首页',
           icon: 'el-icon-s-data'
@@ -41,8 +46,29 @@ export const routes = [
     ]
   },
   {
+    path: '/error',
+    component: Layout,
+    name: 'Error',
+    redirect: '/error/error',
+    children: [
+      {
+        path: '404',
+        name: 'Page404',
+        component: () => import('@/views/Error/404'),
+        meta: { title: 'Error', icon: 'el-icon-s-release' }
+      }
+    ]
+  },
+  {
+    path: '/404',
+    name: '404',
+    component: () => import('@/views/Error/404'),
+    hidden: true
+  },
+  {
     path: '*',
-    redirect: '/404'
+    redirect: '/404',
+    hidden: true
   }
   // {
   //   path: '/',

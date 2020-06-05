@@ -109,7 +109,7 @@ export default {
 <style lang="less" scoped>
 .login-wrapper {
   position: relative;
-  background: url('../assets/images/login_bg.jpg');
+  background: url('../../assets/images/login_bg.jpg');
   background-size: cover;
   #particles-js {
     position: absolute;
