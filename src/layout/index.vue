@@ -5,7 +5,7 @@
     <!-- sidebar -->
     <side-bar />
     <div class="content-box" :class="{'content-collapse': collapse}">
-      <!-- <v-tags></v-tags> -->
+      <tags />
       <div class="content">
         <transition name="fade-page" mode="out-in">
           <!-- <keep-alive :include="$store.state.tagsList.tagsList"> -->
@@ -22,11 +22,14 @@
 <script>
 import SideBar from './componnets/SideBar';
 import vHeader from './componnets/Header';
+import Tags from './componnets/Tags';
+
 export default {
   name: 'Layout',
   components: {
     SideBar,
-    vHeader
+    vHeader,
+    Tags
   },
   data() {
     return {
