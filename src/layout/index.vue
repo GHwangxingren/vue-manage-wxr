@@ -7,11 +7,11 @@
     <div class="content-box" :class="{'content-collapse': collapse}">
       <!-- <v-tags></v-tags> -->
       <div class="content">
-        <transition name="move" mode="out-in">
+        <transition name="fade-page" mode="out-in">
           <!-- <keep-alive :include="$store.state.tagsList.tagsList"> -->
-          <keep-alive>
+          <!-- <keep-alive> -->
             <router-view></router-view>
-          </keep-alive>
+          <!-- </keep-alive> -->
         </transition>
         <el-backtop target=".content"></el-backtop>
       </div>

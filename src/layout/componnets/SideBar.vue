@@ -26,14 +26,12 @@ export default {
     SubMenu
   },
   data() {
-    return {
-      collapse: false
-    }
+    return {}
   },
   computed: {
-    ...mapGetters(['routes']),
+    ...mapGetters(['routes', 'collapse']),
     activeRoute() {
-      return this.$route.path
+      return this.$route.path;
     }
   }
 }
@@ -43,9 +41,15 @@ export default {
 .side-bar {
   width: 200px;
   height: calc(100vh - 70px);
+
   .el-menu {
     height: 100%;
     border: none;
   }
+  
+}
+
+.el-menu-vertical-demo:not(.el-menu--collapse) {
+    width: 230px;
 }
 </style>

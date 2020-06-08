@@ -42,14 +42,14 @@
     <div class="login">
       <p class="login-title">后台管理系统</p>
       <el-form :model="loginForm" :rules="rules" ref="loginForm" class="login-form">
-        <el-form-item prop="username">
+        <el-form-item prop="username" style="margin-bottom: 20px;">
           <el-input v-model="loginForm.username" placeholder="请输入用户名">
-            <el-button slot="prepend" icon="xing-denglu"></el-button>
+            <i slot="prepend" class="el-icon-user"></i>
           </el-input>
         </el-form-item>
-        <el-form-item prop="password">
+        <el-form-item prop="password" style="margin-bottom: 20px;">
           <el-input v-model="loginForm.password" placeholder="请输入登录密码" @keyup.enter.native="submitLogin">
-            <el-button slot="prepend" icon="xing-mima"></el-button>
+            <i slot="prepend" class="el-icon-lock"></i>
           </el-input>
         </el-form-item>
         <el-form-item class="login-btn">
@@ -82,7 +82,9 @@ export default {
     }
   },
   methods: {
-    ...mapActions({login: 'user/_login'}),
+    ...mapActions({
+      login: 'user/_login'
+    }),
     onSuccess() {
       this.showSlide = false;
       this.login(this.loginForm);
