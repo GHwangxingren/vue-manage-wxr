@@ -6,7 +6,7 @@
         <p>Almond</p>
       </a>
       <div class="hr-l">
-        <div class="collapse" @click="setCollapse">
+        <div class="collapse" id="collapse" @click="setCollapse">
           <i :class="collapse ? 'el-icon-s-fold' : 'el-icon-s-unfold'"></i>
         </div>
         <bread-crumb />
@@ -15,12 +15,12 @@
     <div class="header-right">
       <div class="hr-r">
         <ul>
-          <li @click="handleFullScreen">
+          <li id="full-page" @click="handleFullScreen">
             <el-tooltip effect="dark" content="进入全屏" placement="bottom">
               <i class="el-icon-full-screen" style="color: #FFF"></i>
             </el-tooltip>
           </li>
-          <li>
+          <li id="message">
             <el-tooltip el-tooltip effect="dark" content="消息" placement="bottom">
               <el-badge :value="bellNum">
                 <i class="el-icon-bell" style="color: #FFF"></i>
@@ -155,6 +155,10 @@ export default {
 
     .hr-l {
       &:extend(.flex-align-center);
+
+      .collapse {
+        margin-right: 30px;
+      }
     }
   }
 

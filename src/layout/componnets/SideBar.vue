@@ -1,5 +1,5 @@
 <template>
-  <div class="side-bar">
+  <div class="side-bar" id="side-bar">
     <!-- <el-scrollbar> -->
       <el-menu
           :default-active="activeRoute"

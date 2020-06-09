@@ -1,6 +1,6 @@
 <template>
-  <div class="bread-crumb">
-    <el-breadcrumb separator-class="el-icon-arrow-right">
+  <div class="bread-crumb" id="bread-crumb">
+    <el-breadcrumb class="crumb" separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>活动管理</el-breadcrumb-item>
       <el-breadcrumb-item>活动列表</el-breadcrumb-item>
@@ -34,3 +34,26 @@ export default {
   // }
 }
 </script>
+
+<style lang="less">
+.bread-crumb {
+  
+  .el-breadcrumb__item {
+
+    &:last-child {
+
+      .el-breadcrumb__inner {
+        color: #FFCCFF;
+      }
+    }
+  }
+
+  .el-breadcrumb__inner {
+    color: var(--white-color);
+
+    &.is-link {
+      color: var(--white-color);
+    }
+  }
+}
+</style>

@@ -22,22 +22,22 @@
 import SideBar from './componnets/SideBar';
 import vHeader from './componnets/Header';
 import Tags from './componnets/Tags';
+import diver from '@/mixins/driver';
 import { mapGetters } from 'vuex';
 
 export default {
   name: 'Layout',
+  mixins: [diver],
   components: {
     SideBar,
     vHeader,
     Tags
   },
-  data() {
-    return {
-      // collapse: false
-    }
-  },
   computed: {
     ...mapGetters(['collapse', 'tagsName'])
+  },
+  mounted() {
+    this.startDriver()
   }
 }
 </script>
@@ -56,7 +56,7 @@ export default {
   .content {
     width: auto;
     height: 100%;
-    padding: 10px;
+    padding: 30px;
     overflow-y: scroll;
     box-sizing: border-box;
   }

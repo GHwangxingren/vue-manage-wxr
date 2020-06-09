@@ -53,10 +53,26 @@ export const routes = [
     ]
   },
   {
+    path: '/driver',
+    component: Layout,
+    redirect: '/driver/index',
+    children: [
+      {
+        path: 'index',
+        name: 'Driver',
+        component: () => import('@/views/Driver/index'),
+        meta: {
+          title: '引导页',
+          icon: 'el-icon-aim'
+        }
+      }
+    ]
+  },
+  {
     path: '/error',
     component: Layout,
     name: 'Error',
-    redirect: '/error/error',
+    redirect: '/error/404',
     children: [
       {
         path: '404',
