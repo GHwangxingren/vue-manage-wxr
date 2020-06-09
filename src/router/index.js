@@ -2,8 +2,15 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Layout from '@/layout';
 import store from '@/store';
-Vue.use(VueRouter)
 
+//此VueRouter是自己自定义引入暴露出来的，即是自定义的，以下的VueRouter同样是这样
+// 解决两次访问相同路由地址报错
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originalPush.call(this, location).catch(err => err)
+}
+
+Vue.use(VueRouter)
 
 /**
  * 路由相关属性说明
@@ -103,6 +110,7 @@ const createRouter = () => {
 }
 
 const router = createRouter();
+
 
 // 路由守卫
 router.beforeEach(async (to, form, next) => {

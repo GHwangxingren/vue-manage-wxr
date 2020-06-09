@@ -14,9 +14,8 @@ const mutations = {
       state.tagsList = preload;
       return;
     }
-
     state.tagsList.length > 6 && state.tagsList.shift();
-    state.tagsList.push();
+    state.tagsList.push(preload);
   }
 }
 const actions = {

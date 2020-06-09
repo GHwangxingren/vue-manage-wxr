@@ -25,12 +25,12 @@ export default {
   //  }
   //  this.breadList = matched;
   // }
-  watch: {
-    $route: {
-      handler(val) {
-        console.log(val)
-      }
-    }
-  }
+  // watch: {
+  //   $route: {
+  //     handler(val) {
+  //       console.log(val)
+  //     }
+  //   }
+  // }
 }
 </script>

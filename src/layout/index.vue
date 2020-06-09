@@ -8,10 +8,9 @@
       <tags />
       <div class="content">
         <transition name="fade-page" mode="out-in">
-          <!-- <keep-alive :include="$store.state.tagsList.tagsList"> -->
-          <!-- <keep-alive> -->
+          <keep-alive :include="tagsName">
             <router-view></router-view>
-          <!-- </keep-alive> -->
+          </keep-alive>
         </transition>
         <el-backtop target=".content"></el-backtop>
       </div>
@@ -23,6 +22,7 @@
 import SideBar from './componnets/SideBar';
 import vHeader from './componnets/Header';
 import Tags from './componnets/Tags';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Layout',
@@ -33,8 +33,11 @@ export default {
   },
   data() {
     return {
-      collapse: false
+      // collapse: false
     }
+  },
+  computed: {
+    ...mapGetters(['collapse', 'tagsName'])
   }
 }
 </script>
@@ -42,11 +45,11 @@ export default {
 <style lang="less" scoped>
 .content-box {
   position: absolute;
-  left: 250px;
+  left: 230px;
   right: 0;
   top: 70px;
   bottom: 0;
-  padding-bottom: 30px;
+  padding-bottom: 34px;
   -webkit-transition: left 0.3s ease-in-out;
   transition: left 0.3s ease-in-out;
   background: #f0f0f0;
