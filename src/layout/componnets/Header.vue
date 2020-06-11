@@ -2,7 +2,7 @@
   <div class="header">
     <div class="header-left">
       <a href="javascript:;" class="logo-link">
-        <img src="../../assets/images/logo.jpg" alt="">
+        <img src="../../assets/images/logo.jpg" alt="" />
         <p>Almond</p>
       </a>
       <div class="hr-l">
@@ -31,9 +31,9 @@
             <el-avatar :size="50" :src="avatarUrl"></el-avatar>
           </li>
           <li>
-            <el-dropdown size="small" trigger="click" class="drop-down" @command="handleCommand"> 
+            <el-dropdown size="small" trigger="click" class="drop-down" @command="handleCommand">
               <span>
-                {{ username }}
+                {{ userName || "" }}
                 <i class="el-icon-caret-bottom"></i>
               </span>
               <el-dropdown-menu slot="dropdown">
@@ -49,11 +49,11 @@
 </template>
 
 <script>
-import BreadCrumb from '@/components/BreadCrumb';
-import { mapActions, mapMutations, mapGetters } from 'vuex';
+import BreadCrumb from "@/components/BreadCrumb";
+import { mapActions, mapMutations, mapGetters } from "vuex";
 
 export default {
-  name: 'vHeader',
+  name: "vHeader",
   components: {
     BreadCrumb
   },
@@ -61,24 +61,23 @@ export default {
     return {
       fullscreen: false,
       bellNum: 5,
-      username: 'Almand',
-      avatarUrl: 'https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png'
-    }
+      avatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png"
+    };
   },
   computed: {
-    ...mapGetters(['collapse'])
+    ...mapGetters(["collapse", "userName"])
   },
   mounted() {},
   methods: {
     ...mapActions({
-      loginOut: 'user/loginOut'
+      loginOut: "user/loginOut"
     }),
     ...mapMutations({
-      changeCollapse: 'app/changeCollapse'
+      changeCollapse: "app/changeCollapse"
     }),
     handleCommand(type) {
-      if (type === '1') {
-        window.open('https://github.com/GHwangxingren/vue-manage-wxr');
+      if (type === "1") {
+        window.open("https://github.com/GHwangxingren/vue-manage-wxr");
 
         return;
       }
@@ -86,7 +85,7 @@ export default {
       this.loginOut();
     },
     setCollapse() {
-      this.changeCollapse()
+      this.changeCollapse();
     },
     // 全屏的进入与退出
     handleFullScreen() {
@@ -118,7 +117,7 @@ export default {
       this.fullscreen = !this.fullscreen;
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
@@ -126,7 +125,7 @@ export default {
   &:extend(.flex-between);
   height: 70px;
   background-color: var(--header-color);
-  
+
   i {
     color: var(--white-color);
     font-size: 20px;
@@ -146,7 +145,7 @@ export default {
       }
 
       p {
-        color: #FFF;
+        color: #fff;
         font-size: 18px;
         font-weight: bold;
         margin-left: 10px;
@@ -164,7 +163,6 @@ export default {
 
   .header-right {
     .hr-r {
-      
       ul {
         &:extend(.flex-align-center);
 
@@ -179,7 +177,6 @@ export default {
           &.avatar-item {
             margin-right: 20px;
           }
-          
         }
       }
     }

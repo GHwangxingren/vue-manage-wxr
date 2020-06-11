@@ -6,10 +6,10 @@ import request from "@/utils/fetch";
  */
 export function postApi(data) {
   return request({
-      url: '',
-      method: 'post',
-      data
-  })
+    url: "",
+    method: "post",
+    data
+  });
 }
 
 /**
@@ -18,10 +18,10 @@ export function postApi(data) {
  */
 export function getApi(params) {
   return request({
-      url: '',
-      method: 'get',
-      params
-  })
+    url: "",
+    method: "get",
+    params
+  });
 }
 
 /**
@@ -31,10 +31,10 @@ export function getApi(params) {
  */
 export function loginApi(data) {
   return request({
-      url: '/login',
-      method: 'post',
-      data
-  })
+    url: "/login",
+    method: "post",
+    data
+  });
 }
 
 /**
@@ -42,8 +42,7 @@ export function loginApi(data) {
  */
 export function getRolesApi() {
   return request({
-      url: '/getRoutes',
-      method: 'get'
-  })
+    url: "/getRoutes",
+    method: "get"
+  });
 }
-

@@ -3,20 +3,20 @@
     <!-- 动画背景 -->
     <vue-particles
       color="#dedede"
-      :particleOpacity="0.7"
-      :particlesNumber="80"
-      shapeType="circle"
-      :particleSize="4"
-      linesColor="#dedede"
-      :linesWidth="1"
-      :lineLinked="true"
-      :lineOpacity="0.4"
-      :linesDistance="150"
-      :moveSpeed="3"
-      :hoverEffect="true"
-      hoverMode="grab"
-      :clickEffect="true"
-      clickMode="push"
+      :particle-opacity="0.7"
+      :particles-number="80"
+      shape-type="circle"
+      :particle-size="4"
+      lines-color="#dedede"
+      :lines-width="1"
+      :line-linked="true"
+      :line-opacity="0.4"
+      :lines-distance="150"
+      :move-speed="3"
+      :hover-effect="true"
+      hover-mode="grab"
+      :click-effect="true"
+      click-mode="push"
     >
     </vue-particles>
     <!-- 滑动验证码 -->
@@ -26,7 +26,7 @@
           <slide-verify
             @success="onSuccess"
             @fail="onFail"
-            sliderText="向右滑动"
+            slider-text="向右滑动"
             :w="350"
             :h="175"
             ref="slideVerify"
@@ -61,10 +61,10 @@
 </template>
 
 <script>
-import SlideVerify from '@/components/SlideVerify';
-import { mapActions } from 'vuex'; 
+import SlideVerify from "@/components/SlideVerify";
+import { mapActions } from "vuex";
 export default {
-  name: 'login',
+  name: "login",
   components: {
     SlideVerify
   },
@@ -72,46 +72,46 @@ export default {
     return {
       showVerify: false,
       loginForm: {
-        username: 'admin',
-        password: '123456'
+        username: "admin",
+        password: "123456"
       },
       rules: {
-        username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+        username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
+        password: [{ required: true, message: "请输入密码", trigger: "blur" }]
       }
-    }
+    };
   },
   methods: {
     ...mapActions({
-      login: 'user/_login'
+      login: "user/_login"
     }),
     onSuccess() {
       this.showSlide = false;
       this.login(this.loginForm);
     },
     onFail() {
-      this.$message.error('验证失败');
+      this.$message.error("验证失败");
     },
     refresh() {
-      this.$refs.slideVerify.reset()
+      this.$refs.slideVerify.reset();
     },
     submitLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.showVerify = true;
         } else {
-          return false
+          return false;
         }
-      })
+      });
     }
   }
-}
+};
 </script>
 
 <style lang="less" scoped>
 .login-wrapper {
   position: relative;
-  background: url('../../assets/images/login_bg.jpg');
+  background: url("../../assets/images/login_bg.jpg");
   background-size: cover;
   #particles-js {
     position: absolute;
@@ -166,10 +166,10 @@ export default {
     top: 50%;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    background: rgba(255, 255, 255, .8);
+    background: rgba(255, 255, 255, 0.8);
     width: 400px;
     border-radius: 15px;
-    box-shadow: 0 8px 12px 0 rgba(0,0,0,.8);
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.8);
     z-index: 2;
     .login-title {
       width: 100%;
@@ -179,7 +179,7 @@ export default {
       font-weight: bold;
       color: #000;
       border-bottom: 1px solid #ddd;
-      }
+    }
     .login-form {
       padding: 30px;
       .login-btn {
@@ -189,4 +189,3 @@ export default {
   }
 }
 </style>
-

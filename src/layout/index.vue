@@ -4,7 +4,7 @@
     <v-header />
     <!-- sidebar -->
     <side-bar />
-    <div class="content-box" :class="{'content-collapse': collapse}">
+    <div class="content-box" :class="{ 'content-collapse': collapse }">
       <tags />
       <div class="content">
         <transition name="fade-page" mode="out-in">
@@ -19,27 +19,27 @@
 </template>
 
 <script>
-import SideBar from './componnets/SideBar';
-import vHeader from './componnets/Header';
-import Tags from './componnets/Tags';
-import diver from '@/mixins/driver';
-import { mapGetters } from 'vuex';
+import SideBar from "./componnets/SideBar";
+import vHeader from "./componnets/Header";
+import Tags from "./componnets/Tags";
+import diver from "@/mixins/driver";
+import { mapGetters } from "vuex";
 
 export default {
-  name: 'Layout',
-  mixins: [diver],
+  name: "Layout",
   components: {
     SideBar,
     vHeader,
     Tags
   },
+  mixins: [diver],
   computed: {
-    ...mapGetters(['collapse', 'tagsName'])
+    ...mapGetters(["collapse", "tagsName"])
   },
   mounted() {
-    this.startDriver()
+    this.startDriver();
   }
-}
+};
 </script>
 
 <style lang="less" scoped>

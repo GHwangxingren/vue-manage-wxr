@@ -11,12 +11,12 @@
 
 <script>
 export default {
-  name: 'breadCrumb',
+  name: "breadCrumb",
   data() {
     return {
       crumbList: []
-    }
-  },
+    };
+  }
   // getBreadcrumb() {
   //  let matched = this.$route.matched;
   //  //如果不是首页
@@ -32,18 +32,15 @@ export default {
   //     }
   //   }
   // }
-}
+};
 </script>
 
 <style lang="less">
 .bread-crumb {
-  
   .el-breadcrumb__item {
-
     &:last-child {
-
       .el-breadcrumb__inner {
-        color: #FFCCFF;
+        color: #ffccff;
       }
     }
   }

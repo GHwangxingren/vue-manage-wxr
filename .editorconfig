@@ -1,0 +1,19 @@
+
+# EditorConfig is awesome: https://EditorConfig.org
+
+# top-most EditorConfig file
+root = true
+
+[*]
+charset = utf-8
+# 缩进方式
+indent_style = space
+indent_size = 2
+# 是否删除行尾空格
+trim_trailing_whitespace = true
+# 是否让文件以空行结束
+insert_final_newline = true
+# 换行符，lf、cr和crlf
+end_of_line = lf
+# 最大行宽
+max_line_length = 120

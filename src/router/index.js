@@ -1,16 +1,16 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
-import Layout from '@/layout';
-import store from '@/store';
+import Vue from "vue";
+import VueRouter from "vue-router";
+import Layout from "@/layout";
+import store from "@/store";
 
 //此VueRouter是自己自定义引入暴露出来的，即是自定义的，以下的VueRouter同样是这样
 // 解决两次访问相同路由地址报错
-const originalPush = VueRouter.prototype.push
+const originalPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
-  return originalPush.call(this, location).catch(err => err)
-}
+  return originalPush.call(this, location).catch(err => err);
+};
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 /**
  * 路由相关属性说明
@@ -30,67 +30,67 @@ export const routes = [
   //   hidden: true
   // },
   {
-    path: '/login',
-    name: 'Login',
-    component: () => import('@/views/Login/index'),
-    meta: { title: '登录页' },
+    path: "/login",
+    name: "Login",
+    component: () => import("@/views/Login/index"),
+    meta: { title: "登录页" },
     hidden: true
   },
   {
-    path: '/',
+    path: "/",
     component: Layout,
-    redirect: '/home',
+    redirect: "/home",
     children: [
       {
-        path: 'home',
-        name: 'HomePage',
-        component: () => import('@/views/HomePage/index'),
+        path: "home",
+        name: "HomePage",
+        component: () => import("@/views/HomePage/index"),
         meta: {
-          title: '系统首页',
-          icon: 'el-icon-s-data'
+          title: "系统首页",
+          icon: "el-icon-s-data"
         }
       }
     ]
   },
   {
-    path: '/driver',
+    path: "/driver",
     component: Layout,
-    redirect: '/driver/index',
+    redirect: "/driver/index",
     children: [
       {
-        path: 'index',
-        name: 'Driver',
-        component: () => import('@/views/Driver/index'),
+        path: "index",
+        name: "Driver",
+        component: () => import("@/views/Driver/index"),
         meta: {
-          title: '引导页',
-          icon: 'el-icon-aim'
+          title: "引导页",
+          icon: "el-icon-aim"
         }
       }
     ]
   },
   {
-    path: '/error',
+    path: "/error",
     component: Layout,
-    name: 'Error',
-    redirect: '/error/404',
+    name: "Error",
+    redirect: "/error/404",
     children: [
       {
-        path: '404',
-        name: 'Page404',
-        component: () => import('@/views/Error/404'),
-        meta: { title: 'Error', icon: 'el-icon-s-release' }
+        path: "404",
+        name: "Page404",
+        component: () => import("@/views/Error/404"),
+        meta: { title: "Error", icon: "el-icon-s-release" }
       }
     ]
   },
   {
-    path: '/404',
-    name: '404',
-    component: () => import('@/views/Error/404'),
+    path: "/404",
+    name: "404",
+    component: () => import("@/views/Error/404"),
     hidden: true
   },
   {
-    path: '*',
-    redirect: '/404',
+    path: "*",
+    redirect: "/404",
     hidden: true
   }
   // {
@@ -107,31 +107,28 @@ export const routes = [
   //     }
   //   ]
   // },
-]
+];
 
 // 动态添加路由
-export const asyncRoutes = [
-
-]
+export const asyncRoutes = [];
 
 const createRouter = () => {
   return new VueRouter({
-    mode: 'history',
+    mode: "history",
     base: process.env.BASE_URL,
     routes,
     scrollBehavior() {
-      return { x: 0, y: 0 }
+      return { x: 0, y: 0 };
     }
-  })
-}
+  });
+};
 
 const router = createRouter();
-
 
 // 路由守卫
 router.beforeEach(async (to, form, next) => {
   document.title = to.meta.title;
-  if (to.path === '/login') {
+  if (to.path === "/login") {
     next();
   } else {
     if (store.getters.token) {
@@ -140,30 +137,26 @@ router.beforeEach(async (to, form, next) => {
         next();
       } else {
         try {
-          const { roles } = await store.dispatch('user/_getRoles')
-          const addRoutes = await store.dispatch(
-            'permission/getAsyncRoutes',
-            roles
-          );
+          const { roles } = await store.dispatch("user/_getRoles");
+          const addRoutes = await store.dispatch("permission/getAsyncRoutes", roles);
           router.addRoutes(addRoutes);
 
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
-          next({ ...to, replace: true })
+          next({ ...to, replace: true });
         } catch (error) {
-          this.$message.error(error)
+          this.$message.error(error);
         }
       }
     } else {
       next({
-        path: '/login',
+        path: "/login",
         query: {
           redirect: to.fullPath
         }
-      })
+      });
     }
   }
-})
+});
 
-
-export default router
+export default router;
