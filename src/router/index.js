@@ -2,6 +2,7 @@ import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/layout";
 import store from "@/store";
+import { Message } from "element-ui";
 
 //此VueRouter是自己自定义引入暴露出来的，即是自定义的，以下的VueRouter同样是这样
 // 解决两次访问相同路由地址报错
@@ -147,7 +148,46 @@ export const routes = [
 ];
 
 // 动态添加路由
-export const asyncRoutes = [];
+export const asyncRoutes = [
+  {
+    path: "/permission",
+    name: "Permission",
+    component: Layout,
+    meta: {
+      title: "权限许可",
+      icon: "el-icon-lock"
+    },
+    children: [
+      {
+        path: "admin",
+        name: "PageAdmin",
+        component: () => import("@/views/Permission/Admin"),
+        meta: {
+          title: "管理员页面",
+          icon: "el-icon-user-solid"
+        }
+      },
+      {
+        path: "user",
+        name: "PageUser",
+        component: () => import("@/views/Permission/User"),
+        meta: {
+          title: "用户页面",
+          icon: "el-icon-user"
+        }
+      },
+      {
+        path: "permission",
+        name: "SetRole",
+        component: () => import("@/views/Permission/Permission"),
+        meta: {
+          title: "权限设置",
+          icon: "el-icon-s-tools"
+        }
+      }
+    ]
+  }
+];
 
 const createRouter = () => {
   return new VueRouter({
@@ -188,7 +228,7 @@ router.beforeEach(async (to, form, next) => {
             replace: true
           });
         } catch (error) {
-          this.$message.error(error);
+          Message.error(error);
         }
       }
     } else {

@@ -76,7 +76,7 @@ const actions = {
           } else {
             Message.error(res.msg);
           }
-          resolve(res.data);
+          resolve(res.data.userInfo);
         })
         .catch(error => {
           reject(error);

@@ -38,11 +38,11 @@ export default {
         return item.hidden ? false : true;
       });
       // 只有一个子，自身没有meta属性，说明是一级
-      if (!_aChildren.length === 1 && !item.meta) {
+      if (_aChildren.length === 1 && !item.meta) {
         return true;
       }
       // 没有子，说明是一级
-      if (!_aChildren.children) {
+      if (!item.children) {
         return true;
       }
       return false;

@@ -14,7 +14,7 @@ const mutations = {
 
 let matchRoles = (routes, roles) => {
   let _aRoute = [];
-  for (let key in routes) {
+  for (let key of routes) {
     let _oKey = { ...key };
     if (roles.includes(_oKey.name)) {
       if (_oKey.children) {
@@ -29,7 +29,7 @@ let matchRoles = (routes, roles) => {
 const actions = {
   getAsyncRoutes({ commit, rootGetters }, roles) {
     return new Promise(resolve => {
-      let routes = rootGetters.userName === "admin" ? asyncRoutes : matchRoles(asyncRoutes, roles);
+      let routes = rootGetters.role === "admin" ? asyncRoutes : matchRoles(asyncRoutes, roles);
       commit("SET_ROUTES", routes);
       resolve(routes);
     });

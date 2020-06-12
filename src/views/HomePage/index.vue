@@ -26,7 +26,7 @@
         <to-do-list />
       </el-col>
     </el-row>
-    <el-row :gutter="20">
+    <el-row :gutter="20" style="margin-top: 20px;">
       <el-col :span="12">
         <el-card shadow="hover">
           <schart ref="bar" class="schart" canvas-id="bar" :options="options1" />
