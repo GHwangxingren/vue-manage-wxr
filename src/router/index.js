@@ -33,7 +33,9 @@ export const routes = [
     path: "/login",
     name: "Login",
     component: () => import("@/views/Login/index"),
-    meta: { title: "登录页" },
+    meta: {
+      title: "登录页"
+    },
     hidden: true
   },
   {
@@ -85,6 +87,22 @@ export const routes = [
     ]
   },
   {
+    path: "/markDown",
+    component: Layout,
+    redirect: "/markDown/index",
+    children: [
+      {
+        path: "index",
+        name: "MarkDown",
+        component: () => import("@/views/MarkDown/index"),
+        meta: {
+          title: "markDown",
+          icon: "el-icon-edit-outline"
+        }
+      }
+    ]
+  },
+  {
     path: "/error",
     component: Layout,
     name: "Error",
@@ -94,7 +112,10 @@ export const routes = [
         path: "404",
         name: "Page404",
         component: () => import("@/views/Error/404"),
-        meta: { title: "Error", icon: "el-icon-s-release" }
+        meta: {
+          title: "Error",
+          icon: "el-icon-s-release"
+        }
       }
     ]
   },
@@ -134,7 +155,10 @@ const createRouter = () => {
     base: process.env.BASE_URL,
     routes,
     scrollBehavior() {
-      return { x: 0, y: 0 };
+      return {
+        x: 0,
+        y: 0
+      };
     }
   });
 };
@@ -159,7 +183,10 @@ router.beforeEach(async (to, form, next) => {
 
           // hack method to ensure that addRoutes is complete
           // set the replace: true, so the navigation will not leave a history record
-          next({ ...to, replace: true });
+          next({
+            ...to,
+            replace: true
+          });
         } catch (error) {
           this.$message.error(error);
         }

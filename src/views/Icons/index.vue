@@ -42,6 +42,7 @@
 import { iconFont, elIcon } from "@/utils/icon.js";
 
 export default {
+  name: "Icons",
   data() {
     return {
       iconFont,
