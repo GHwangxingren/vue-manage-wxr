@@ -69,6 +69,22 @@ export const routes = [
     ]
   },
   {
+    path: "/icon",
+    component: Layout,
+    redirect: "/icon/index",
+    children: [
+      {
+        path: "index",
+        name: "Icons",
+        component: () => import("@/views/Icons/index"),
+        meta: {
+          title: "Icons图标",
+          icon: "el-icon-picture-outline"
+        }
+      }
+    ]
+  },
+  {
     path: "/error",
     component: Layout,
     name: "Error",

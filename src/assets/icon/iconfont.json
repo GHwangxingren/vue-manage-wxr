@@ -1,0 +1,184 @@
+{
+  "id": "1880183",
+  "name": "wxr-vue",
+  "font_family": "iconfont",
+  "css_prefix_text": "xing-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "15262775",
+      "name": "1_music69",
+      "font_class": "1_music69",
+      "unicode": "e6a9",
+      "unicode_decimal": 59049
+    },
+    {
+      "icon_id": "15262779",
+      "name": "1_music73",
+      "font_class": "1_music73",
+      "unicode": "e6aa",
+      "unicode_decimal": 59050
+    },
+    {
+      "icon_id": "15262785",
+      "name": "1_music88",
+      "font_class": "1_music88",
+      "unicode": "e6ab",
+      "unicode_decimal": 59051
+    },
+    {
+      "icon_id": "15262786",
+      "name": "1_music82",
+      "font_class": "1_music82",
+      "unicode": "e6ac",
+      "unicode_decimal": 59052
+    },
+    {
+      "icon_id": "15262787",
+      "name": "1_music74",
+      "font_class": "1_music74",
+      "unicode": "e6ad",
+      "unicode_decimal": 59053
+    },
+    {
+      "icon_id": "15262792",
+      "name": "1_music1",
+      "font_class": "1_music1",
+      "unicode": "e6ae",
+      "unicode_decimal": 59054
+    },
+    {
+      "icon_id": "15262799",
+      "name": "1_music84",
+      "font_class": "1_music84",
+      "unicode": "e6af",
+      "unicode_decimal": 59055
+    },
+    {
+      "icon_id": "15262800",
+      "name": "1_music12",
+      "font_class": "1_music12",
+      "unicode": "e6b0",
+      "unicode_decimal": 59056
+    },
+    {
+      "icon_id": "15262801",
+      "name": "1_music86",
+      "font_class": "1_music86",
+      "unicode": "e6b1",
+      "unicode_decimal": 59057
+    },
+    {
+      "icon_id": "15262804",
+      "name": "1_music166",
+      "font_class": "1_music166",
+      "unicode": "e6b2",
+      "unicode_decimal": 59058
+    },
+    {
+      "icon_id": "15262806",
+      "name": "1_music17",
+      "font_class": "1_music17",
+      "unicode": "e6b3",
+      "unicode_decimal": 59059
+    },
+    {
+      "icon_id": "15262807",
+      "name": "1_music83",
+      "font_class": "1_music83",
+      "unicode": "e6b4",
+      "unicode_decimal": 59060
+    },
+    {
+      "icon_id": "15262808",
+      "name": "1_music87",
+      "font_class": "1_music87",
+      "unicode": "e6b5",
+      "unicode_decimal": 59061
+    },
+    {
+      "icon_id": "15262810",
+      "name": "1_music95",
+      "font_class": "1_music95",
+      "unicode": "e6b6",
+      "unicode_decimal": 59062
+    },
+    {
+      "icon_id": "15262812",
+      "name": "1_music72",
+      "font_class": "1_music72",
+      "unicode": "e6b7",
+      "unicode_decimal": 59063
+    },
+    {
+      "icon_id": "15262816",
+      "name": "1_music94",
+      "font_class": "1_music94",
+      "unicode": "e6b8",
+      "unicode_decimal": 59064
+    },
+    {
+      "icon_id": "15262818",
+      "name": "1_music80",
+      "font_class": "1_music80",
+      "unicode": "e6b9",
+      "unicode_decimal": 59065
+    },
+    {
+      "icon_id": "15262820",
+      "name": "1_music92",
+      "font_class": "1_music92",
+      "unicode": "e6ba",
+      "unicode_decimal": 59066
+    },
+    {
+      "icon_id": "15262823",
+      "name": "1_music90",
+      "font_class": "1_music90",
+      "unicode": "e6bb",
+      "unicode_decimal": 59067
+    },
+    {
+      "icon_id": "15262829",
+      "name": "1_music68",
+      "font_class": "1_music68",
+      "unicode": "e6bc",
+      "unicode_decimal": 59068
+    },
+    {
+      "icon_id": "15262830",
+      "name": "1_music81",
+      "font_class": "1_music81",
+      "unicode": "e6bd",
+      "unicode_decimal": 59069
+    },
+    {
+      "icon_id": "15262831",
+      "name": "1_music85",
+      "font_class": "1_music85",
+      "unicode": "e6be",
+      "unicode_decimal": 59070
+    },
+    {
+      "icon_id": "15262832",
+      "name": "1_music91",
+      "font_class": "1_music91",
+      "unicode": "e6bf",
+      "unicode_decimal": 59071
+    },
+    {
+      "icon_id": "15262834",
+      "name": "1_music93",
+      "font_class": "1_music93",
+      "unicode": "e6c0",
+      "unicode_decimal": 59072
+    },
+    {
+      "icon_id": "15262837",
+      "name": "1_music89",
+      "font_class": "1_music89",
+      "unicode": "e6c1",
+      "unicode_decimal": 59073
+    }
+  ]
+}

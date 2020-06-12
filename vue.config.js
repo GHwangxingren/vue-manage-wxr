@@ -5,7 +5,7 @@ const resolve = function(dir) {
 
 module.exports = {
   publicPath: process.env.NODE_ENV === "production" ? "/wxr" : "/",
-  outputDir: "dist",
+  outputDir: process.env.outputDir,
   assetsDir: "static",
   lintOnSave: true, // 是否开启eslint保存检测
   productionSourceMap: false, // 是否在构建生产包时生成sourcdeMap
