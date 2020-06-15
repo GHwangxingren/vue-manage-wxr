@@ -125,11 +125,6 @@ export const routes = [
     name: "404",
     component: () => import("@/views/Error/404"),
     hidden: true
-  },
-  {
-    path: "*",
-    redirect: "/404",
-    hidden: true
   }
   // {
   //   path: '/',
@@ -186,6 +181,11 @@ export const asyncRoutes = [
         }
       }
     ]
+  },
+  {
+    path: "*",
+    redirect: "/404",
+    hidden: true
   }
 ];
 

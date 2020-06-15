@@ -46,3 +46,13 @@ export function getRolesApi() {
     method: "get"
   });
 }
+
+/**
+ * 获取权限信息
+ */
+export function getRolesListApi() {
+  return request({
+    url: "/rolesList",
+    method: "get"
+  });
+}
