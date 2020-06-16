@@ -9,6 +9,15 @@ module.exports = {
   assetsDir: "static",
   lintOnSave: true, // 是否开启eslint保存检测
   productionSourceMap: false, // 是否在构建生产包时生成sourcdeMap
+  pwa: {
+    iconPaths: {
+      favicon32: "favicon.ico",
+      favicon16: "favicon.ico",
+      appleTouchIcon: "favicon.ico",
+      maskIcon: "favicon.ico",
+      msTileImage: "favicon.ico"
+    }
+  },
   chainWebpack: config => {
     config.resolve.alias.set("@", resolve("src"));
     config.optimization.runtimeChunk("single");
