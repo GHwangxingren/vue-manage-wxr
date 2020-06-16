@@ -88,22 +88,6 @@ export const routes = [
     ]
   },
   {
-    path: "/markDown",
-    component: Layout,
-    redirect: "/markDown/index",
-    children: [
-      {
-        path: "index",
-        name: "MarkDown",
-        component: () => import("@/views/MarkDown/index"),
-        meta: {
-          title: "markDown",
-          icon: "el-icon-edit-outline"
-        }
-      }
-    ]
-  },
-  {
     path: "/error",
     component: Layout,
     name: "Error",
@@ -145,6 +129,22 @@ export const routes = [
 // 动态添加路由
 export const asyncRoutes = [
   {
+    path: "/markDown",
+    component: Layout,
+    redirect: "/markDown/index",
+    children: [
+      {
+        path: "index",
+        name: "MarkDown",
+        component: () => import("@/views/MarkDown/index"),
+        meta: {
+          title: "markDown",
+          icon: "el-icon-edit-outline"
+        }
+      }
+    ]
+  },
+  {
     path: "/permission",
     name: "Permission",
     component: Layout,
@@ -178,6 +178,41 @@ export const asyncRoutes = [
         meta: {
           title: "权限设置",
           icon: "el-icon-s-tools"
+        }
+      }
+    ]
+  },
+  {
+    path: "/excel",
+    name: "Excel",
+    component: Layout,
+    meta: {
+      title: "Excel",
+      icon: "el-icon-document"
+    },
+    children: [
+      {
+        path: "excelIn",
+        name: "ExcelIn",
+        component: () => import("@/views/Excel/ExcelIn"),
+        meta: {
+          title: "Excel导入"
+        }
+      },
+      {
+        path: "excelOut",
+        name: "ExcelOut",
+        component: () => import("@/views/Excel/ExcelOut"),
+        meta: {
+          title: "Excel导出"
+        }
+      },
+      {
+        path: "mutiheaderOut",
+        name: "MutiheaderOut",
+        component: () => import("@/views/Excel/MutiheaderOut"),
+        meta: {
+          title: "多级表头导出"
         }
       }
     ]

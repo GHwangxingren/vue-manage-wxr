@@ -1,37 +1,51 @@
 <template>
   <div class="bread-crumb" id="bread-crumb">
     <el-breadcrumb class="crumb" separator-class="el-icon-arrow-right">
-      <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>活动管理</el-breadcrumb-item>
-      <el-breadcrumb-item>活动列表</el-breadcrumb-item>
-      <el-breadcrumb-item>活动详情</el-breadcrumb-item>
+      <el-breadcrumb-item v-for="item in crumbList" :key="item.path" :to="item.path">{{ item.meta.title }}</el-breadcrumb-item>
     </el-breadcrumb>
   </div>
 </template>
 
 <script>
+import { hasOnlyChild } from "@/utils/common.js";
+
 export default {
   name: "breadCrumb",
   data() {
     return {
       crumbList: []
     };
+  },
+  watch: {
+    $route: {
+      handler(val) {
+        this.getBreadcrumb(val);
+      },
+      immediate: true
+    }
+  },
+  methods: {
+    hasOnlyChild(children = [], item) {
+      hasOnlyChild(children, item);
+    },
+    getBreadcrumb(route) {
+      let matched = route.matched.filter(item => {
+        if (item.meta && item.meta.title) {
+          item.path = "";
+
+          return true;
+        }
+      });
+      const isHome = matched[0];
+
+      //如果不是首页
+      if (isHome && isHome.name !== "HomePage") {
+        matched = [{ path: "/home", meta: { title: "系统首页" } }].concat(matched);
+      }
+
+      this.crumbList = matched;
+    }
   }
-  // getBreadcrumb() {
-  //  let matched = this.$route.matched;
-  //  //如果不是首页
-  //  if (!this.isHome(matched[0])) {
-  //   matched = [{ path: "/home", meta: { title: "首页" } }].concat(matched);
-  //  }
-  //  this.breadList = matched;
-  // }
-  // watch: {
-  //   $route: {
-  //     handler(val) {
-  //       console.log(val)
-  //     }
-  //   }
-  // }
 };
 </script>
 
