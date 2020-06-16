@@ -23,18 +23,8 @@
     <div class="slideShadow" v-show="showVerify">
       <transition>
         <div class="slideSty animated bounce">
-          <slide-verify
-            @success="onSuccess"
-            @fail="onFail"
-            slider-text="向右滑动"
-            :w="350"
-            :h="175"
-            ref="slideVerify"
-          ></slide-verify>
-          <div class="iconBtn">
-            <i class="el-icon-circle-close" @click="showVerify = false"></i
-            ><i class="el-icon-refresh" @click="refresh"></i>
-          </div>
+          <slide-verify @success="onSuccess" @fail="onFail" slider-text="向右滑动" :w="350" :h="175" ref="slideVerify"></slide-verify>
+          <div class="iconBtn"><i class="el-icon-circle-close" @click="showVerify = false"></i><i class="el-icon-refresh" @click="refresh"></i></div>
         </div>
       </transition>
     </div>

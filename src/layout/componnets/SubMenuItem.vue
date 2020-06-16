@@ -1,17 +1,13 @@
 <template>
   <div v-if="!subItem.hidden">
     <!--这个表示有子菜单的情况下，才会显示-->
-    <el-submenu :index="subItem.path" v-if="!isFirstLevel(subItem.children, subItem)">
+    <el-submenu :index="subItem.path" v-if="!hasOnlyChild(subItem.children, subItem)">
       <template slot="title">
         <i class="icon" :class="subItem.meta.icon"></i>
         <span slot="title">{{ subItem.meta.title }}</span>
       </template>
       <template v-for="(routePath, index) in subItem.children">
-        <sub-menu-item
-          :sub-item="routePath"
-          :key="index"
-          v-if="routePath.children && routePath.children.length > 0"
-        ></sub-menu-item>
+        <sub-menu-item :sub-item="routePath" :key="index" v-if="routePath.children && routePath.children.length > 0"></sub-menu-item>
         <el-menu-item v-else :index="resolvePath(subItem.path, routePath.path)" :key="index">
           <i class="icon" :class="routePath.meta.icon"></i>
           <span slot="title">{{ routePath.meta.title }}</span>
@@ -29,23 +25,14 @@
 
 <script>
 import path from "path";
+import { hasOnlyChild } from "@/utils/common.js";
+
 export default {
   name: "subMenuItem",
   props: ["subItem"],
   methods: {
-    isFirstLevel(children = [], item) {
-      let _aChildren = children.filter(item => {
-        return item.hidden ? false : true;
-      });
-      // 只有一个子，自身没有meta属性，说明是一级
-      if (_aChildren.length === 1 && !item.meta) {
-        return true;
-      }
-      // 没有子，说明是一级
-      if (!item.children) {
-        return true;
-      }
-      return false;
+    hasOnlyChild(children = [], item) {
+      return hasOnlyChild(children, item);
     },
     resolvePath(basePath, curPath) {
       return path.join(basePath, curPath);

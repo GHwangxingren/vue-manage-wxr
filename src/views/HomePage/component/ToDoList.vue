@@ -28,12 +28,7 @@
         </el-table-column>
       </el-table>
       <div class="pagination">
-        <el-pagination
-          @current-change="handleCurrentChange"
-          :page-size="5"
-          layout="total, prev, pager, next"
-          :total="todoList.length"
-        />
+        <el-pagination @current-change="handleCurrentChange" :page-size="5" layout="total, prev, pager, next" :total="todoList.length" />
       </div>
     </el-card>
   </div>

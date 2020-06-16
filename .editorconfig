@@ -16,4 +16,4 @@ insert_final_newline = true
 # 换行符，lf、cr和crlf
 end_of_line = lf
 # 最大行宽
-max_line_length = 120
+max_line_length = 150
