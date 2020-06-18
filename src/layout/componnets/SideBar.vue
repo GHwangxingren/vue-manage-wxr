@@ -11,7 +11,7 @@
       unique-opened
       router
     >
-      <sub-menu v-for="(item, index) in routes" :sub-item="item" :key="index"></sub-menu>
+      <sub-menu v-for="(item, index) in routes" :sub-item="item" :key="index" :base-path="item.path"></sub-menu>
     </el-menu>
     <!-- </el-scrollbar> -->
   </div>

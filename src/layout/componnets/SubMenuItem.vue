@@ -7,8 +7,13 @@
         <span slot="title">{{ subItem.meta.title }}</span>
       </template>
       <template v-for="(routePath, index) in subItem.children">
-        <sub-menu-item :sub-item="routePath" :key="index" v-if="routePath.children && routePath.children.length > 0"></sub-menu-item>
-        <el-menu-item v-else :index="resolvePath(subItem.path, routePath.path)" :key="index">
+        <sub-menu-item
+          :sub-item="routePath"
+          :key="index"
+          v-if="routePath.children && routePath.children.length > 0"
+          :base-path="resolvePath(routePath.path)"
+        ></sub-menu-item>
+        <el-menu-item v-else :index="resolvePath(routePath.path)" :key="index">
           <i class="icon" :class="routePath.meta.icon"></i>
           <span slot="title">{{ routePath.meta.title }}</span>
         </el-menu-item>
@@ -16,7 +21,7 @@
     </el-submenu>
 
     <!--表示一级菜单-->
-    <el-menu-item v-else :index="resolvePath(subItem.path, subItem.children[0].path)">
+    <el-menu-item v-else :index="resolvePath(subItem.children[0].path)">
       <i class="icon" :class="subItem.children[0].meta.icon"></i>
       <span slot="title">{{ subItem.children[0].meta.title }}</span>
     </el-menu-item>
@@ -29,13 +34,13 @@ import { hasOnlyChild } from "@/utils/common.js";
 
 export default {
   name: "subMenuItem",
-  props: ["subItem"],
+  props: ["subItem", "basePath"],
   methods: {
     hasOnlyChild(children = [], item) {
       return hasOnlyChild(children, item);
     },
-    resolvePath(basePath, curPath) {
-      return path.join(basePath, curPath);
+    resolvePath(curPath) {
+      return path.join(this.basePath, curPath);
     }
   }
 };

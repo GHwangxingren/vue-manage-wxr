@@ -4,6 +4,8 @@ import Layout from "@/layout";
 import store from "@/store";
 import { Message } from "element-ui";
 
+import nestedRouter from "./nested";
+
 //此VueRouter是自己自定义引入暴露出来的，即是自定义的，以下的VueRouter同样是这样
 // 解决两次访问相同路由地址报错
 const originalPush = VueRouter.prototype.push;
@@ -120,6 +122,39 @@ export const routes = [
     ]
   },
   {
+    path: "/clipboard",
+    component: Layout,
+    redirect: "/clipboard/index",
+    children: [
+      {
+        path: "index",
+        name: "Clipboard",
+        component: () => import("@/views/Clipboard/index"),
+        meta: {
+          title: "Clipboard",
+          icon: "el-icon-document-copy"
+        }
+      }
+    ]
+  },
+  {
+    path: "/backTop",
+    component: Layout,
+    redirect: "/backTop/index",
+    children: [
+      {
+        path: "index",
+        name: "BackToTop",
+        component: () => import("@/views/BackToTop/index"),
+        meta: {
+          title: "回到顶部",
+          icon: "el-icon-top"
+        }
+      }
+    ]
+  },
+  nestedRouter,
+  {
     path: "/error",
     component: Layout,
     name: "Error",
@@ -180,6 +215,7 @@ export const asyncRoutes = [
     path: "/permission",
     name: "Permission",
     component: Layout,
+    redirect: "/permission/user",
     meta: {
       title: "权限许可",
       icon: "el-icon-lock"
@@ -218,6 +254,7 @@ export const asyncRoutes = [
     path: "/excel",
     name: "Excel",
     component: Layout,
+    redirect: "/excel/excelIn",
     meta: {
       title: "Excel",
       icon: "el-icon-document"

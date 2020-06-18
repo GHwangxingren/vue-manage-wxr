@@ -19,6 +19,7 @@ export default {
   watch: {
     $route: {
       handler(val) {
+        console.log(val);
         this.getBreadcrumb(val);
       },
       immediate: true
@@ -29,20 +30,14 @@ export default {
       hasOnlyChild(children, item);
     },
     getBreadcrumb(route) {
-      let matched = route.matched.filter(item => {
-        if (item.meta && item.meta.title) {
-          item.path = "";
-
-          return true;
-        }
-      });
+      let matched = route.matched.filter(item => item.meta && item.meta.title);
       const isHome = matched[0];
 
       //如果不是首页
       if (isHome && isHome.name !== "HomePage") {
         matched = [{ path: "/home", meta: { title: "系统首页" } }].concat(matched);
       }
-
+      // console.log(matched, "matched");
       this.crumbList = matched;
     }
   }
