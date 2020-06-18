@@ -88,6 +88,38 @@ export const routes = [
     ]
   },
   {
+    path: "/avator",
+    component: Layout,
+    redirect: "/avator/index",
+    children: [
+      {
+        path: "index",
+        name: "Avator",
+        component: () => import("@/views/Avator/index"),
+        meta: {
+          title: "头像上传",
+          icon: "el-icon-camera"
+        }
+      }
+    ]
+  },
+  {
+    path: "/effect",
+    component: Layout,
+    redirect: "/effect/index",
+    children: [
+      {
+        path: "index",
+        name: "Effect",
+        component: () => import("@/views/Effect/index"),
+        meta: {
+          title: "小效果",
+          icon: "el-icon-thumb"
+        }
+      }
+    ]
+  },
+  {
     path: "/error",
     component: Layout,
     name: "Error",
