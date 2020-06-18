@@ -19,7 +19,10 @@
       v-model="imagecropperShow"
       url=""
       lang-type="en"
-      @crop-upload-success="cropSuccess"
+      @crop-upload-success="cropUploadSuccess"
+      @crop-upload-fail="cropUploadFail"
+      @src-file-set="srcFileSet"
+      @crop-success="cropSuccess"
     />
   </div>
 </template>
@@ -39,14 +42,21 @@ export default {
     };
   },
   methods: {
+    // 图片截取完成事件（上传前), 参数( imageDataUrl, field )
     cropSuccess(resData) {
+      console.log(resData);
       this.imagecropperShow = false;
       this.imagecropperKey = this.imagecropperKey + 1;
-      this.image = resData.files.avatar;
+      this.image = resData;
     },
-    close() {
-      this.imagecropperShow = false;
-    }
+    // 上传失败
+    cropUploadFail() {},
+    // 用户选取文件之后, 参数( fileName, fileType, fileSize )
+    srcFileSet(fileName) {
+      console.log(fileName);
+    },
+    // 上传成功
+    cropUploadSuccess() {}
   }
 };
 </script>
