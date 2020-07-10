@@ -3,6 +3,8 @@ import VueRouter from "vue-router";
 import Layout from "@/layout";
 import store from "@/store";
 import { Message } from "element-ui";
+import NProgress from "nprogress";
+import "nprogress/nprogress.css";
 
 import nestedRouter from "./nested";
 
@@ -311,6 +313,7 @@ const router = createRouter();
 
 // 路由守卫
 router.beforeEach(async (to, form, next) => {
+  NProgress.start();
   document.title = to.meta.title;
   if (to.path === "/login") {
     next();
@@ -344,6 +347,10 @@ router.beforeEach(async (to, form, next) => {
       });
     }
   }
+});
+
+router.afterEach(() => {
+  NProgress.done();
 });
 
 export default router;
